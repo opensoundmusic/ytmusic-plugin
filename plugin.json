@@ -1,0 +1,29 @@
+{
+  "name": "ytmusic-plugin",
+  "version": "0.0.8",
+  "description": "YouTube Music search and download functionality",
+  "author": "MultiX",
+  "entry": "index.mjs",
+  "enabled": true,
+  "dependencies": {
+    "puppeteer": "^21.0.0",
+    "axios": "^1.6.0"
+  },
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/search",
+      "handler": "searchHandler"
+    },
+    {
+      "method": "POST",
+      "path": "/download",
+      "handler": "downloadHandler"
+    }
+  ],
+  "permissions": [
+    "network",
+    "filesystem",
+    "rabbitmq"
+  ]
+}

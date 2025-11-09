@@ -1,0 +1,14 @@
+{
+  "name": "ytmusic-plugin",
+  "version": "1.0.0",
+  "type": "module",
+  "dependencies": {
+    "express": "^5.1.0",
+    "ytdl-core": "^4.11.5",
+    "axios": "^1.13.1",
+    "puppeteer": "^24.27.0",
+    "node-fetch": "^2.7.0",
+    "ytmusic-api": "^5.3.0",
+    "youtubei.js": "^5.0.0"
+  }
+}
