@@ -11,8 +11,7 @@
     "axios": "^1.13.1",
     "puppeteer": "^24.27.0",
     "node-fetch": "^2.7.0",
-    "ytmusic-api": "^5.3.0",
-    "youtubei.js": "^5.0.0"
+    "ytmusic-api": "^5.3.0"
   },
   "routes": [
     {
@@ -26,9 +25,5 @@
       "handler": "downloadHandler"
     }
   ],
-  "permissions": [
-    "network",
-    "filesystem",
-    "rabbitmq"
-  ]
+  "permissions": ["network", "filesystem", "rabbitmq"]
 }
