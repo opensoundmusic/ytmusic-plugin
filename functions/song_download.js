@@ -18,7 +18,20 @@ if (!fs.existsSync(downloadDir)) {
 }
 
 export async function getCookies(vidId) {
-    const browser = await puppeteer.launch({ headless: true ,   args: ['--no-sandbox', '--disable-setuid-sandbox']});
+    const browser = await puppeteer.launch({
+        headless: true,
+        executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
+        protocolTimeout: 60000,
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-gpu',
+            '--disable-software-rasterizer',
+            '--single-process'
+        ]
+    });
+
     const page = await browser.newPage();
 
     await page.goto(`https://www.youtube.com/watch?v=${vidId}`);
@@ -52,7 +65,7 @@ async function ensureYtDlp() {
     }
 
     console.log('yt-dlp binary not found, downloading from GitHub...');
-    
+
     try {
         // download the latest version for the current platform
         await YTDlpWrap.downloadFromGithub(binaryPath);
