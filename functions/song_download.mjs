@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { spawn } from 'child_process';
+import YTDlpWrap from 'yt-dlp-wrap';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
@@ -41,26 +41,34 @@ export async function download(vidId) {
     const cookieFile = await getCookies(vidId);
     console.log('Got cookies, downloading...');
 
-    return new Promise((resolve, reject) => {
-        const ytDlp = spawn('yt-dlp', [
-            '--cookies', cookieFile,
-            '-f', 'bestaudio',
-            '-x',                          // Extract audio
-            '--audio-format', 'mp3',       // Convert to mp3
-            '--audio-quality', '0',        // Best quality
-            '-o', `${downloadDir}/${vidId}.%(ext)s`,
-            `https://www.youtube.com/watch?v=${vidId}`
-        ]);
+    const ytDlpWrap = new YTDlpWrap();
+    
+    const ytDlpProcess = ytDlpWrap.exec([
+        '--cookies', cookieFile,
+        '-f', 'bestaudio',
+        '-x',
+        '--audio-format', 'mp3',
+        '--audio-quality', '0',
+        '-o', `${downloadDir}/${vidId}.%(ext)s`,
+        `https://www.youtube.com/watch?v=${vidId}`
+    ]);
 
-        ytDlp.stdout.on('data', (data) => console.log(data.toString()));
-        ytDlp.stderr.on('data', (data) => console.log(data.toString()));
-        ytDlp.on('close', (code) => {
-            if (code === 0) {
-                console.log('Download complete!');
-                resolve();
-            } else {
-                reject(new Error(`Failed with code ${code}`));
-            }
+    return new Promise((resolve, reject) => {
+        ytDlpProcess.on('progress', (progress) => {
+            console.log(progress.percent, progress.totalSize, progress.currentSpeed, progress.eta);
+        });
+
+        ytDlpProcess.on('ytDlpEvent', (eventType, eventData) => {
+            console.log(eventType, eventData);
+        });
+
+        ytDlpProcess.on('error', (error) => {
+            reject(error);
+        });
+
+        ytDlpProcess.on('close', () => {
+            console.log('Download complete!');
+            resolve();
         });
     });
 }

@@ -1,6 +1,6 @@
 {
   "name": "ytmusic-plugin",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "YouTube Music search and download functionality",
   "author": "MultiX",
   "entry": "index.mjs",

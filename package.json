@@ -4,7 +4,7 @@
   "type": "module",
   "dependencies": {
     "express": "^5.1.0",
-    "ytdl-core": "^4.11.5",
+    "yt-dlp-wrap": "^2.3.12",
     "axios": "^1.13.1",
     "puppeteer": "^24.27.0",
     "node-fetch": "^2.7.0",
