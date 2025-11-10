@@ -1,40 +1,40 @@
 # Legal Disclaimer — Open Sound YTMusic Plugin
 
-This plugin provides local search and download functionality for YouTube Music content using **unofficial and unsupported methods**.  
-It operates entirely on the user’s own hardware and is distributed for educational and self-hosting purposes only.
+The Open Sound YTMusic Plugin provides automated tools to retrieve and download audio and metadata from YouTube Music using **unofficial and unsupported methods**.  
+It is designed for **personal, educational, and self-hosted** use only.
 
 ---
 
 ## Terms of Use
 - The plugin is **not affiliated with or endorsed by YouTube or Google LLC**.
-- The software makes use of publicly available endpoints through libraries such as:
-  - `youtubei.js`
-  - `ytmusic-api`
-  - `ytdl-core`
-- These libraries interact with YouTube’s public web interface and are **not official APIs**.
-- Use of this software to download or retain copyrighted music may violate YouTube’s Terms of Service (Section 5B).
+- It uses the following third-party open-source libraries:
+  - `puppeteer` — for automated browser sessions.
+  - `yt-dlp-wrap` — a wrapper around the `yt-dlp` binary.
+  - `ytmusic-api` — an unofficial interface for metadata access.
+- These libraries interact with YouTube’s public web endpoints and are **not official APIs**.
+- Using this software to download or permanently store copyrighted material may violate YouTube’s Terms of Service.
 
 ---
 
 ## Liability
-- The Open Sound maintainers and contributors **bear no responsibility** for how this plugin is used.
-- All use of this software is at the user’s own risk.
-- The authors explicitly **disclaim all liability** for copyright infringement, account restrictions, or any damages arising from use of the plugin.
+- The maintainers of Open Sound and this plugin **accept no liability** for user behavior or content obtained through this software.
+- The software is provided **as-is**, without warranty or guarantee.
+- Users are solely responsible for ensuring that their use complies with all applicable laws and platform terms.
 
 ---
 
-## Compliance
-Users are responsible for ensuring:
-- They comply with applicable copyright laws in their jurisdiction.
-- They do not redistribute or make available copyrighted content publicly.
-- They use the plugin only for personal or research purposes.
+## Compliance Requirements
+Users must:
+- Operate the plugin only on their own hardware.
+- Avoid redistributing or publicly sharing any downloaded material.
+- Accept full responsibility for all downloads, storage, or conversions performed with this software.
 
 ---
 
 ## Summary
 This plugin:
-- Runs locally, does not host or distribute media.
-- Uses unofficial methods for metadata and audio retrieval.
-- Exists for educational, personal, and self-hosted experimentation.
+- Runs locally and never hosts or distributes content publicly.
+- Uses automation and third-party open-source tools for functionality.
+- Exists solely for personal research, archival, or self-hosted experimentation.
 
-By using this plugin, users agree to these terms and accept full legal responsibility.
+By installing or running this plugin, you agree to these terms and assume full legal responsibility.
