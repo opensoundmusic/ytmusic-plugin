@@ -1,1 +1,7 @@
 node_modules/
+/cookies.txt
+/test.mjs
+/test2.js
+downloads/
+/package-lock.json
+/yt-dlp
