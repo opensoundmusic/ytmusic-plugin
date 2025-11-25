@@ -17,6 +17,8 @@ if (!fs.existsSync(downloadDir)) {
     fs.mkdirSync(downloadDir, { recursive: true });
 }
 
+let lastCookiesFetched = null;
+
 export async function getCookies(vidId) {
     const browser = await puppeteer.launch({
         headless: true,
@@ -49,6 +51,8 @@ export async function getCookies(vidId) {
     const cookieFilePath = join(pluginRoot, 'cookies.txt');
     writeFileSync(cookieFilePath, '# Netscape HTTP Cookie File\n' + netscapeCookies);
 
+    lastCookiesFetched = new Date();
+
     return cookieFilePath;
 }
 
@@ -77,7 +81,16 @@ async function ensureYtDlp() {
 }
 
 export async function download(vidId) {
-    const cookieFile = await getCookies(vidId);
+    
+    let cookieFile;
+    const twelveHoursAgo = new Date(Date.now() - 12 * 60 * 60 * 1000);
+
+    if (lastCookiesFetched > twelveHoursAgo) {
+        cookieFile = join(pluginRoot, 'cookies.txt');
+    } else {
+        cookieFile = await getCookies(vidId);
+    }
+        
     console.log('Got cookies, downloading...');
 
     // ensure yt-dlp binary exists
