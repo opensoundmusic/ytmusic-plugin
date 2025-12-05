@@ -334,3 +334,5 @@ async function parseSearchResults(data, config, cookies) {
     
     return results;
 }
+
+export default { getConfigAndCookies, searchSongs };
