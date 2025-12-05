@@ -14,7 +14,7 @@ const REFRESH_INTERVAL = 86400000;
 
 const artistAvatarCache = new Map();
 
-async function getConfigAndCookies(forceRefresh = false) {
+export async function getConfigAndCookies(forceRefresh = false) {
     const now = Date.now();
     const projectRoot = path.join(__dirname, '..');
     const cookiesDir = path.join(projectRoot, 'cookies');

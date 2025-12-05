@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { searchSongs } from './functions/song_search.mjs';
 import { download } from './functions/song_download.js';
 import { initializeCookies } from './functions/get_cookies.mjs';
+import { ytCronJob } from './functions/cron_job.mjs';
 
 const router = Router();
 
@@ -13,6 +14,7 @@ class YouTubeMusicPlugin {
 
     async init() {
         console.log('Initializing YouTube Music plugin...');
+        ytCronJob.start();
         try {
             await initializeCookies();
             this.initialized = true;

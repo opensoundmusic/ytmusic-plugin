@@ -19,7 +19,7 @@ if (!fs.existsSync(downloadDir)) {
 
 let lastCookiesFetched = null;
 
-export async function getCookies(vidId) {
+export async function getCookies() {
     const browser = await puppeteer.launch({
         headless: true,
         executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
@@ -36,7 +36,7 @@ export async function getCookies(vidId) {
 
     const page = await browser.newPage();
 
-    await page.goto(`https://www.youtube.com/watch?v=${vidId}`);
+    await page.goto(`https://www.youtube.com/watch?v=jNQXAC9IVRw`);
     await new Promise(resolve => setTimeout(resolve, 3000));
 
     const client = await page.createCDPSession();
@@ -88,7 +88,7 @@ export async function download(vidId) {
     if (lastCookiesFetched > twelveHoursAgo) {
         cookieFile = join(pluginRoot, 'cookies.txt');
     } else {
-        cookieFile = await getCookies(vidId);
+        cookieFile = await getCookies();
     }
         
     console.log('Got cookies, downloading...');
