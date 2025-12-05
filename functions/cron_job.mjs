@@ -1,6 +1,6 @@
 import { CronJob } from 'cron';
 import { getConfigAndCookies } from './song_search.mjs';
-import * as songDownload from './song_download.js';
+import { getCookies }  from './song_download.mjs';
 
 console.log("========= yt-cookies cron job =========");
 
@@ -12,7 +12,7 @@ export const ytCronJob = new CronJob(
         try {
             await Promise.all([
                 getConfigAndCookies(),
-                songDownload.getCookies() 
+                getCookies() 
             ]);
         } catch (error) {
            console.log(`failed to refresh cookies due to: ${error}`); 
