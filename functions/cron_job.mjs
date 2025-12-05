@@ -10,10 +10,14 @@ export const ytCronJob = new CronJob(
 	'* 12 * * * *', // cronTime
 	async function () {
 		console.log('fetch new yt-cookies job starting...');
-        await Promise.all([
+        try {
+            await Promise.all([
             getConfigAndCookies(),
             getCookies()
         ]);
+        } catch (error) {
+           console.log(`failed to refresh cookies due to: ${error}`); 
+        }
 	}, // onTick
 	function () {
         console.log('yt-cookies job just finished');
