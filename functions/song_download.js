@@ -2,10 +2,11 @@ import puppeteer from 'puppeteer';
 import { writeFileSync } from 'fs';
 import { fileURLToPath } from 'url';
 import { join } from 'path';
+import { createRequire } from 'module';
 import fs from 'fs';
 import path from 'path';
-import YTDlpWrap from 'yt-dlp-wrap';
 
+const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -55,6 +56,9 @@ export async function getCookies() {
     return cookieFilePath;
 }
 
+
+
+const YTDlpWrap = require('yt-dlp-wrap').default;
 const binaryPath = path.join(pluginRoot, 'yt-dlp');
 
 async function ensureYtDlp() {
@@ -124,5 +128,3 @@ export async function download(vidId) {
             });
     });
 }
-
-export default { getCookies, download };

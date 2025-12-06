@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { searchSongs } from './functions/song_search.mjs';
-import { download } from './functions/song_download.mjs';
+import { download } from './functions/song_download.js';
 import { initializeCookies } from './functions/get_cookies.mjs';
 import { ytCronJob } from './functions/cron_job.mjs';
 

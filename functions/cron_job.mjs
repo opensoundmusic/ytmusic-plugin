@@ -1,6 +1,6 @@
 import { CronJob } from 'cron';
 import { getConfigAndCookies } from './song_search.mjs';
-import { getCookies }  from './song_download.mjs';
+import { getCookies }  from './song_download.js';
 
 console.log("========= yt-cookies cron job =========");
 
