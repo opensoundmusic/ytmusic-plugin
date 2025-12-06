@@ -6,7 +6,7 @@ console.log("========= yt-cookies cron job =========");
 
 // cron job to update yt cookies every 12 hours
 export const ytCronJob = new CronJob(
-	'* 12 * * * *', // cronTime
+	'0 */12 * * *', // cronTime
 	async function () {
 		console.log('fetch new yt-cookies job starting...');
         try {
