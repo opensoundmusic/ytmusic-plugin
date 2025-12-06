@@ -27,6 +27,7 @@ class YouTubeMusicPlugin {
 
     async cleanup() {
         console.log('Cleaning up YouTube Music plugin...');
+        ytCronJob.stop();
         this.initialized = false;
     }
 
