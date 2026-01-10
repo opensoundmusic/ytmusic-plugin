@@ -5,6 +5,7 @@ import { join } from 'path';
 import { createRequire } from 'module';
 import fs from 'fs';
 import path from 'path';
+import { chmod } from 'fs/promises';
 
 const require = createRequire(import.meta.url);
 const __filename = fileURLToPath(import.meta.url);
@@ -65,6 +66,12 @@ async function ensureYtDlp() {
     // Check if yt-dlp binary exists
     if (fs.existsSync(binaryPath)) {
         console.log('yt-dlp binary found');
+        // Ensure it's executable even if it already exists
+        try {
+            await chmod(binaryPath, 0o755);
+        } catch (err) {
+            console.warn('Could not set execute permissions:', err);
+        }
         return binaryPath;
     }
 
@@ -74,11 +81,17 @@ async function ensureYtDlp() {
         // download the latest version for the current platform
         await YTDlpWrap.downloadFromGithub(binaryPath);
         console.log('yt-dlp binary downloaded successfully');
+        
+        // Make the binary executable
+        await chmod(binaryPath, 0o755);
+        console.log('yt-dlp binary made executable');
+        
         return binaryPath;
     } catch (error) {
         throw new Error(`Failed to download yt-dlp: ${error.message}`);
     }
 }
+
 
 export async function download(vidId) {
     
